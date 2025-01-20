@@ -1,0 +1,82 @@
+{
+    "troubleshooting_scenarios": [
+      {
+        "issue": "Streaming Issues",
+        "description": "Users are unable to stream content or experience buffering.",
+        "steps": [
+          "Check if the internet connection is stable and meets the minimum bandwidth requirement.",
+          "Restart the streaming device (smart TV, phone, laptop, etc.).",
+          "Clear the app or browser cache.",
+          "Verify that the streaming service is updated to the latest version.",
+          "Ensure the user’s subscription plan supports the requested content.",
+          "Check the streaming platform's server status (provide a link if applicable)."
+        ]
+      },
+      {
+        "issue": "Content Playback Error",
+        "description": "Content doesn’t play, or users encounter error messages during playback.",
+        "steps": [
+          "Confirm that the content being accessed is included in the subscription package.",
+          "Ensure that digital rights management (DRM) is enabled on the device.",
+          "Restart the application or browser and try again.",
+          "Check for any ongoing outages in the service (server-side).",
+          "Provide error code-specific solutions (e.g., 'Error 403: Unauthorized access')."
+        ]
+      },
+      {
+        "issue": "Video Quality Degradation",
+        "description": "The video resolution drops unexpectedly (e.g., from HD to SD).",
+        "steps": [
+          "Check the user’s internet speed (recommend a minimum of 5 Mbps for HD streaming).",
+          "Ensure no other devices are consuming excessive bandwidth.",
+          "Enable auto-quality adjustment in the app settings.",
+          "Restart the streaming device and app.",
+          "Update the application or firmware of the device."
+        ]
+      },
+      {
+        "issue": "Login or Access Issues",
+        "description": "Users cannot log in to the Synamedia platform or access their accounts.",
+        "steps": [
+          "Verify that the username and password are correct.",
+          "Check if the account is active (ensure subscription validity).",
+          "Reset the password using the 'Forgot Password' option.",
+          "Clear cookies and cache in the browser or app.",
+          "Ensure that the browser or app is compatible with the platform."
+        ]
+      },
+      {
+        "issue": "Content Protection and DRM Issues",
+        "description": "DRM-protected content fails to play or shows restricted access errors.",
+        "steps": [
+          "Confirm that the device supports DRM (e.g., Widevine, PlayReady).",
+          "Check if the required browser extension for DRM is installed and enabled.",
+          "Update the browser or app to the latest version.",
+          "Verify that the user has the appropriate permissions to access the content.",
+          "Contact technical support if the problem persists."
+        ]
+      },
+      {
+        "issue": "Advertising Metrics Not Loading",
+        "description": "Business insights or targeted advertising metrics are not displayed in the analytics dashboard.",
+        "steps": [
+          "Check the user’s internet connection and reload the dashboard.",
+          "Ensure that the user’s subscription plan includes analytics features.",
+          "Clear the browser or app cache and cookies.",
+          "Verify that the dashboard API is active (check the status page if applicable).",
+          "Try accessing the dashboard on a different browser or device."
+        ]
+      },
+      {
+        "issue": "Anti-Piracy and Security Alerts",
+        "description": "Users receive anti-piracy alerts or face access restrictions.",
+        "steps": [
+          "Verify that the content is being accessed from an authorized device and location.",
+          "Ensure that the user’s account credentials have not been compromised.",
+          "Check if multi-factor authentication (MFA) is enabled for the account.",
+          "Update the user’s device security settings (firewall, antivirus).",
+          "Contact the security team if unauthorized access is suspected."
+        ]
+      }
+    ]
+  }
