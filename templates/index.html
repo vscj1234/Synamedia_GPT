@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synamedia AI Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="/static/synamedia1.png" alt="Synamedia Logo" class="logo">
+            <h1>Synamedia GPT</h1>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">
+                Hello! I'm Synamedia's AI assistant. How can I help you today with our video delivery, processing, and monetization solutions?
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here..." autofocus>
+            <div class="button-group">
+                <button onclick="sendQuery()" class="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <button onclick="startListening()" class="mic-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+
+        let enableSpeakFeature = false; // Flag to track if speak is enabled
+
+        function appendToChatBox(content, isUser = false) {
+            const chatBox = document.getElementById('chat-box');
+            const message = document.createElement('div');
+            message.className = isUser ? 'user-message' : 'bot-message';
+            message.innerHTML = content;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendQuery() {
+            const query = document.getElementById('user-input').value;
+            if (!query.trim()) return;
+            
+            appendToChatBox(query, true);
+            document.getElementById('user-input').value = '';
+            fetchQuery(query);
+        }
+
+        function startListening() {
+            recognition.start();
+            const micBtn = document.querySelector('.mic-btn');
+            micBtn.classList.add('listening');
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('user-input').value = transcript;
+                sendQuery();
+                micBtn.classList.remove('listening');
+            };
+            
+            recognition.onend = () => {
+                micBtn.classList.remove('listening');
+            };
+        }
+
+        function fetchQuery(query) {
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendToChatBox(data.response);
+                if (enableSpeakFeature) {
+                    speakResponse(data.response);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function enableSpeech() {
+            enableSpeakFeature = !enableSpeakFeature;
+            const speakBtn = document.querySelector('.speak-btn');
+            if (enableSpeakFeature) {
+                speakBtn.classList.add('active');
+            } else {
+                speakBtn.classList.remove('active');
+            }
+        }
+
+        function speakResponse(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Handle Enter key
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendQuery();
+            }
+        });
+    </script>
+</body>
+</html>
